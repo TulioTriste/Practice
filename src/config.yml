@@ -1,0 +1,21 @@
+LICENCE:
+  ID: ''
+enabled_chat_format: true
+# Variables is: %prefix% %suffix% %tags% %lunar% %player% %star1% %star2% %star3% %star4% %star5%
+chat_format: '%prefix%%lunar%%player%%suffix%&7: &f%message%'
+serverip: 'veox.us'
+Scoreboard:
+  Title: '&6&lSolex &f\u2503 Practice'
+Colors:
+  First: '&9'
+  Second: '&b'
+  Third: '&f'
+DATABASE:
+  MONGO:
+    HOST: 127.0.0.1
+    PORT: 27017
+    AUTHENTICATION:
+      ENABLED: false
+      DATABASE: practice
+      USER: user
+      PASSWORD: password   

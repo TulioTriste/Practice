@@ -1,0 +1,213 @@
+package me.sebaarkadia.practice.commands;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
+import me.sebaarkadia.practice.Practice;
+import me.sebaarkadia.practice.kit.Kit;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.CommandExecutor;
+
+public class KitCommand implements CommandExecutor
+{
+    private Practice plugin;
+    
+    public KitCommand(final Practice plugin) {
+        this.plugin = plugin;
+    }
+    
+    public boolean onCommand(final CommandSender sender, final Command command, final String commandLabel, final String[] commandArgs) {
+        if (commandArgs.length == 0) {
+            final Player player = (Player)sender;
+            player.sendMessage("§7§m--------------------------------------------");
+            player.sendMessage("    §6§lKit §7- §eCommands");
+            player.sendMessage("");
+            player.sendMessage(" §7- §e/kit create §7{kitname}");
+            player.sendMessage(" §7- §e/kit combo §7{kitname}");
+            player.sendMessage(" §7- §e/kit ranked §7{kitname}");
+            player.sendMessage(" §7- §e/kit editable §7{kitname}");
+            player.sendMessage(" §7- §e/kit builduhc §7{kitname}");
+            player.sendMessage(" §7- §e/kit setinventory §7{kitname}");
+            player.sendMessage(" §7- §e/kit seticon §7{kitname}");
+            player.sendMessage(" §7- §e/kit enable §7{kitname}");
+            player.sendMessage(" §7- §e/kit remove §7{kitname}");
+            player.sendMessage(" §7- §e/kit retrieve §7{kitname}");
+            player.sendMessage("§7§m--------------------------------------------");
+            return true;
+        }
+        if (!(sender instanceof Player)) {
+            sender.sendMessage(ChatColor.RED + "Sorry, only players can execute this command!");
+            return true;
+        }
+        final Player player = (Player)sender;
+        if (!player.hasPermission("practice.commands.kit")) {
+            player.sendMessage("§cNo Permission!");
+            return true;
+        }
+        if (commandArgs[0].equalsIgnoreCase("create")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit create <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            if (this.plugin.getManagerHandler().getKitManager().getKit(kitName) != null) {
+                sender.sendMessage(ChatColor.RED + "This kit already exists!");
+                return true;
+            }
+            this.plugin.getManagerHandler().getKitManager().createKit(kitName);
+            player.sendMessage(ChatColor.YELLOW + "Successfully created a kit with the name " + ChatColor.GREEN + kitName + ChatColor.YELLOW + "!");
+            Practice.getInstance().saveConfig();
+        }
+        else if (commandArgs[0].equalsIgnoreCase("combo")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit combo <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            kit.setCombo(!kit.isCombo());
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " is now " + ChatColor.GREEN + (kit.isCombo() ? "combo mode" : "not combo mode") + ChatColor.YELLOW + "!");
+            Practice.getInstance().saveConfig();
+        }
+        else if (commandArgs[0].equalsIgnoreCase("ranked")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit ranked <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            kit.setRanked(!kit.isRanked());
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " is now " + ChatColor.GREEN + (kit.isRanked() ? "ranked mode" : "not ranked mode") + ChatColor.YELLOW + "!");
+            Practice.getInstance().saveConfig();
+        }
+        else if (commandArgs[0].equalsIgnoreCase("editable")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit editable <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            kit.setEditable(!kit.isEditable());
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " is now " + ChatColor.GREEN + (kit.isEditable() ? "editable" : "not editable") + ChatColor.YELLOW + "!");
+            Practice.getInstance().saveConfig();
+        }
+        else if (commandArgs[0].equalsIgnoreCase("builduhc")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit builduhc <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            kit.setBuilduhc(!kit.isBuilduhc());
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " is now " + ChatColor.GREEN + (kit.isBuilduhc() ? "builduhc mode" : "not builduhcmode") + ChatColor.YELLOW + "!");
+            Practice.getInstance().saveConfig();
+        }
+        else if (commandArgs[0].equalsIgnoreCase("enable")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit enable <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            kit.setEnabled(!kit.isEnabled());
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " is now " + ChatColor.GREEN + (kit.isEnabled() ? "enabled" : "disabled") + ChatColor.YELLOW + "!");
+            Practice.getInstance().saveConfig();
+        }
+        else if (commandArgs[0].equalsIgnoreCase("setinventory")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit setinventory <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            kit.setMainContents(player.getInventory().getContents());
+            kit.setArmorContents(player.getInventory().getArmorContents());
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " now has your inventory setup!");
+            Practice.getInstance().saveConfig();
+        }
+        else if (commandArgs[0].equalsIgnoreCase("retrieve")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit retrieve <kit name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            player.getInventory().setContents(kit.getMainContents());
+            player.getInventory().setArmorContents(kit.getArmorContents());
+            player.updateInventory();
+            player.sendMessage(ChatColor.YELLOW + "You have retrieved kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + "'s inventory setup!");
+        }
+        else if (commandArgs[0].equalsIgnoreCase("seticon")) {
+            if (commandArgs.length != 2) {
+                sender.sendMessage(ChatColor.RED + "Usage: /kit seticon <kit name>");
+                return true;
+            }
+            if (player.getItemInHand() == null) {
+                sender.sendMessage(ChatColor.RED + "You need something in your hand!");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            final Kit kit = this.plugin.getManagerHandler().getKitManager().getKit(kitName);
+            if (kit == null) {
+                sender.sendMessage(ChatColor.RED + "This kit doesn't exist!");
+                return true;
+            }
+            kit.setIcon(player.getItemInHand());
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " now has an icon as the item in your hand!");
+            Practice.getInstance().saveConfig();
+        }
+        else {
+            if (!commandArgs[0].equalsIgnoreCase("remove")) {
+                player.sendMessage("Unknown Command.");
+                return true;
+            }
+            if (commandArgs.length != 2) {
+                player.sendMessage(ChatColor.RED + "Usage: /kit remove <arena name>");
+                return true;
+            }
+            final String kitName = commandArgs[1];
+            if (this.plugin.getManagerHandler().getKitManager().getKit(kitName) == null) {
+                player.sendMessage(ChatColor.RED + "This kit does not exist!");
+                return true;
+            }
+            this.plugin.getManagerHandler().getKitManager().destroyKit(kitName);
+            player.sendMessage(ChatColor.YELLOW + "Kit " + ChatColor.GREEN + kitName + ChatColor.YELLOW + " has been removed!");
+            Practice.getInstance().saveConfig();
+        }
+        this.plugin.getManagerHandler().getInventoryManager().setEditorInventory();
+        this.plugin.getManagerHandler().getInventoryManager().setRequestInventory();
+        this.plugin.getManagerHandler().getInventoryManager().setSplitFightInventory();
+        Practice.getInstance().saveConfig();
+        return true;
+    }
+}

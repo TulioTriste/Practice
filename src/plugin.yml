@@ -1,0 +1,55 @@
+name: "Practice"
+version: "1.0"
+author: "SebaArkadia"
+main: "me.sebaarkadia.practice.Practice"
+commands:
+  event:
+  eventmanager:
+  chat:
+  seeall:
+  mod:
+    aliases: [staff, staffmode, h]
+  tp:
+  ping:
+  host:
+  elo:
+  leave:
+  join:
+  tournament:
+    aliases: [torneo]
+  scoreboard:
+    aliases: [togglesidebar, togglesb]
+  reset:
+  credits:
+  arena:
+  duel:
+  accept:
+  kit:
+  spectate:
+    aliases: [spec]
+  builder:
+    aliases: [build]
+  party:
+    aliases: [p]
+  practice:
+    aliases: [prac, plugin]
+  topelo:
+  inventory:
+  broadcast:
+    aliases: [bc]
+  msg:
+  whois:
+    aliases: [info, informacion]
+  recording:
+    aliases: [grabando, rec]
+  newvideo:
+    aliases: [nuevovideo,]
+  gamemode:
+    aliases: [gm]
+  lag:
+  list:
+    aliases: [players, conectados]
+  rename:
+  setmaxplayers:
+    aliases: [setslots, setmaxslots]
+  

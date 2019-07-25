@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/ElTioSeba/Desktop/Decompiler/AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dependencias/Priority #2/ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ElTioSeba/Desktop/Decompiler/AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dependencias/Priority #1/dependency-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ElTioSeba/Desktop/Decompiler/AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dependencias/Priority #1/lombok.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ElTioSeba/Desktop/Decompiler/AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dependencias/Priority #2/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ElTioSeba/Desktop/Decompiler/AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dependencias/Priority #2/LunarClientAPI.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ElTioSeba/Desktop/Decompiler/AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dependencias/spigots/solexspigot-1.8.8-R0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ElTioSeba/Desktop/Decompiler/AAAAAAAAAAAAAAAAAAAAAAAAAAAAA/Dependencias/OtherPlugins/DeluxeTags.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
